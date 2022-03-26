@@ -20,19 +20,30 @@ services:
       - POSTGRES_USER=hello_django
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_DB=hello_django_dev
-  tor:
-    image: goldy/tor-hidden-service:latest
-    links:
-      - web
-    restart: always
+  solr:
+    image: solr:8
+    ports:
+     - "8983:8983"
     volumes:
-      - "~/.keys/:/var/lib/tor/hidden_service/"
-    environment:
-      # Set mapping ports
-      WEB_PORTS: "8000:8000"
+      - solr-data:/var/solr
+    command:
+      - solr-precreate
     depends_on:
       - web
+  # tor:
+  #   image: goldy/tor-hidden-service:latest
+  #   links:
+  #     - web
+  #   restart: always
+  #   volumes:
+  #     - "~/.keys/:/var/lib/tor/hidden_service/"
+  #   environment:
+  #     # Set mapping ports
+  #     WEB_PORTS: "8000:8000"
+  #   depends_on:
+  #     - web
     
 
 volumes:
   postgres_data:
+  solr-data:
