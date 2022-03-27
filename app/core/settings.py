@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-import oscar
 from pathlib import Path
 
 
@@ -164,7 +163,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'UTC'
 
@@ -200,3 +199,4 @@ HAYSTACK_CONNECTIONS = {
 }
 
 OSCAR_SHOP_NAME = 'Shop'
+OSCAR_SHOP_TAGLINE = 'A'
