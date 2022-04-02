@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-
+from oscar.defaults import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
     'oscar.config.Shop',
     'oscar.apps.analytics.apps.AnalyticsConfig',
-    'oscar.apps.checkout.apps.CheckoutConfig',
+    #'oscar.apps.checkout.apps.CheckoutConfig',
     'oscar.apps.address.apps.AddressConfig',
     'oscar.apps.shipping.apps.ShippingConfig',
     'oscar.apps.catalogue.apps.CatalogueConfig',
@@ -74,6 +74,9 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.vouchers.apps.VouchersDashboardConfig',
     'oscar.apps.dashboard.communications.apps.CommunicationsDashboardConfig',
     'oscar.apps.dashboard.shipping.apps.ShippingDashboardConfig',
+
+    #custom
+    'checkout.apps.CheckoutConfig',
 
     # 3rd-party apps that oscar depends on
     'widget_tweaks',
@@ -163,7 +166,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -188,9 +191,6 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-from oscar.defaults import *
 
 HAYSTACK_CONNECTIONS = {
     'default': {

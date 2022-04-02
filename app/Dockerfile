@@ -13,7 +13,7 @@ RUN apk update \
     && apk add postgresql \
     && apk add postgresql-dev \
     && pip install psycopg2 \
-    && apk add jpeg-dev zlib-dev libjpeg \
+    && apk add jpeg-dev zlib-dev libjpeg gettext --force\
     && pip install Pillow \
     && apk del build-deps
 
