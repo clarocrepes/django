@@ -1,0 +1,27 @@
+{% extends "oscar/checkout/checkout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Payment details" %} | {{ block.super }}
+{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'oscar/checkout/nav.html' with step=3 %}
+{% endblock %}
+
+{% block checkout_title %}{% trans "Payment details" %}{% endblock %}
+
+{% block order_contents %}{% endblock %}
+{% block shipping_address %}{% endblock %}
+{% block shipping_method %}{% endblock %}
+{% block payment_method %}{% endblock %}
+
+{% block payment_details %}
+    {% block payment_details_content %}
+        <p>{% trans "Please, send payment to above BTC address" %}</p>
+         <img src="https://static-unitag.com/images/help/QRCode/qrcode.png?mh=07b7c2a2"/>
+         <br>
+         <h3>as451a54q2645dz7asd454g44g7red5aa454d4s</h3>
+        <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">{% trans "Continue" %}</a>
+    {% endblock payment_details_content %}
+{% endblock payment_details %}
