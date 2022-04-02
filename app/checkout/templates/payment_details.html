@@ -11,17 +11,41 @@
 
 {% block checkout_title %}{% trans "Payment details" %}{% endblock %}
 
-{% block order_contents %}{% endblock %}
-{% block shipping_address %}{% endblock %}
-{% block shipping_method %}{% endblock %}
-{% block payment_method %}{% endblock %}
+{% block payment_method %}
+    <div class="col-sm-6">
+        <div class="sub-header">
+            <h2>{% trans "Payment" %}</h2>
+        </div>
+        <div class="card card-body bg-light card card-body bg-light-success">
+            <p>{% trans "Please send the payment to the following BTC address once you have placed the order." %}</p>
+            <img src="https://static-unitag.com/images/help/QRCode/qrcode.png?mh=07b7c2a2" width="50%" style="margin: 0 auto;"/>
+            <br>
+            <h3>as451a54q2645dz7asd454g44g7red5aa454d4s</h3>
+        </div>
+    </div>
+{% endblock %}
 
-{% block payment_details %}
-    {% block payment_details_content %}
-        <p>{% trans "Please, send payment to above BTC address" %}</p>
-         <img src="https://static-unitag.com/images/help/QRCode/qrcode.png?mh=07b7c2a2"/>
-         <br>
-         <h3>as451a54q2645dz7asd454g44g7red5aa454d4s</h3>
-        <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">{% trans "Continue" %}</a>
-    {% endblock payment_details_content %}
-{% endblock payment_details %}
+{% block place_order %}
+    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="place_order" />
+
+        {% comment %}
+            When submitting sensitive data on the payment details page (eg a bankcard)
+            we don't want to save the data and so we pass the bound form to the preview
+            template and render it in a hidden div.  Then the payment information will
+            get re-submitted when the user confirms the order.
+        {% endcomment %}
+        <div style="display:none">
+            {% block hiddenforms %}{% endblock %}
+        </div>
+
+        <div class="form-group clearfix">
+            <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                     <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock place_order %}
