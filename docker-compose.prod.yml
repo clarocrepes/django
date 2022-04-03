@@ -5,7 +5,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn shop_a.wsgi:application --bind 0.0.0.0:8000
+    command: /home/app/.local/bin/gunicorn core.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
@@ -23,6 +23,8 @@ services:
       - ./.env.prod.db
   nginx:
     build: ./nginx
+    links:
+      - web
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
@@ -39,7 +41,7 @@ services:
       - "~/.keys/:/var/lib/tor/hidden_service/"
     environment:
       # Set mapping ports
-      NGINX_PORTS: "1337:80"
+      NGINX_PORTS: "80:80"
     depends_on:
       - nginx
 
