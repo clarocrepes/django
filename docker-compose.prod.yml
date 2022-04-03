@@ -32,6 +32,16 @@ services:
       - 80:80
     depends_on:
       - web
+  solr:
+    image: solr:8
+    ports:
+      - "8983:8983"
+    volumes:
+      - solr-data:/var/solr
+    command:
+      - solr-precreate
+    depends_on:
+      - web
   tor:
     image: goldy/tor-hidden-service:latest
     links:
