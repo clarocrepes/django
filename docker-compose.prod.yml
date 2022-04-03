@@ -32,18 +32,18 @@ services:
       - 80:80
     depends_on:
       - web
-  tor:
-    image: goldy/tor-hidden-service:latest
-    links:
-      - nginx
-    restart: always
-    volumes:
-      - "~/.keys/:/var/lib/tor/hidden_service/"
-    environment:
-      # Set mapping ports
-      NGINX_PORTS: "80:80"
-    depends_on:
-      - nginx
+  # tor:
+  #   image: goldy/tor-hidden-service:latest
+  #   links:
+  #     - nginx
+  #   restart: always
+  #   volumes:
+  #     - "~/.keys/:/var/lib/tor/hidden_service/"
+  #   environment:
+  #     # Set mapping ports
+  #     NGINX_PORTS: "80:80"
+  #   depends_on:
+  #     - nginx
 
 volumes:
   postgres_data:

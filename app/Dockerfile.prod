@@ -39,11 +39,11 @@ RUN chown -R app:app $APP_HOME
 # change to the app user
 USER app
 
-# run entrypoint.prod.sh
-ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
-
 # lint
 RUN pip install --upgrade pip
 RUN pip install flake8==4.0.1
 RUN pip install -r requirements.txt
 RUN /home/app/.local/bin/flake8 --ignore=E501,F401,F403,F405 . --exclude venv
+
+# run entrypoint.prod.sh
+ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
